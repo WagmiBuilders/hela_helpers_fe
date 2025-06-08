@@ -1,12 +1,12 @@
 # React + TypeScript + Vite
-# Setup Instructions for React Vite Project
+### Setup Instructions for React Vite Project
 
-# Clone the repository
-git clone  https://github.com/WagmiBuilders/hela_helpers_fe.git
+### 1.Clone the repository
+git clone  https://github.com/WagmiBuilders/hela_helpers_fe.git<br/>
 cd <your-repo>
 
-# Install dependencies
+### 2.Install dependencies
 npm install
 
-# Run the project
+### 3.Run the project
 npm run dev
