@@ -1,0 +1,39 @@
+@import '../../constants/colors.css';
+
+.public-suggestion {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  gap: 1.5rem;
+  background-color: var(--bg-gray);
+  box-sizing: border-box;
+}
+
+.request {
+  width: 35%;
+  min-width: 300px;
+  overflow-y: auto;
+  max-height: 100%;
+  padding: 1rem 1rem;
+}
+
+.response {
+  flex-grow: 1;
+  background-color: var(--bg-dark);
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;   
+  align-items: start;                         
+}
+
+.no-suggestion {
+  font-size: 2rem;
+  color: var(--text-gray);
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}

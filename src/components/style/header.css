@@ -1,0 +1,21 @@
+@import '../../constants/colors.css';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px; 
+  padding: 0 2rem;
+  background-color: var(--white);
+  width: 100%;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}

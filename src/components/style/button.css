@@ -1,0 +1,14 @@
+@import '../../constants/colors.css';
+
+.button-common {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-width: 1px;
+  border-color: var(--bg-dark);
+}
+
+.button-common:hover {
+  color: var(--white);
+}

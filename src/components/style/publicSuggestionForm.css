@@ -1,0 +1,44 @@
+@import '../../constants/colors.css';
+
+.suggestion-form {
+  max-width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+select,
+input {
+  padding: 1.2rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  background-color: var(--white);
+  box-shadow: 0 0 0 4px rgba(88, 91, 94, 0.15);
+}
+
+.form-title{
+  font-size: 2rem;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-button{
+  margin-top: 2rem;
+}
+
+.option {
+  color: var(--text-gray);
+}

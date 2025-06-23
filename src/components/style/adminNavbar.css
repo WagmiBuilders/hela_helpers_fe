@@ -1,0 +1,65 @@
+@import '../../constants/colors.css';
+
+.admin-nb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--bg-gray);
+  padding: 30px 10px;
+  box-shadow: 2px 0 1px rgba(0, 0, 0, 0.038);
+  position: fixed;
+}
+
+.profile-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.user-name p{
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 1rem;
+   color: var(--text-gray);
+}
+
+.options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.options li {
+  padding: 12px 16px;
+  margin: 8px 0;
+  border-width: 1rem;
+  border-color: var(--bg-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+}
+
+.options li:hover {
+  border: 1px solid var(--bg-dark);
+}
+
+.logout-button {
+  text-align: center;
+}
+
