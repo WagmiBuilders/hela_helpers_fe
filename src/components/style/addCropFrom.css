@@ -1,0 +1,20 @@
+@import '../../constants/colors.css';
+
+
+.add-crop input {
+  padding: 1.2rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid green;
+  border-radius: 5px;
+  width: 100%;
+  background-color: var(--white);
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease; */
+  margin-bottom: 2rem;
+}
+
+input:focus {
+  outline: none;
+  background-color: var(--white);
+  box-shadow: 0 0 0 4px rgba(88, 91, 94, 0.15);
+}
