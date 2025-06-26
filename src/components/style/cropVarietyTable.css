@@ -1,0 +1,57 @@
+@import '../../constants/colors.css';
+
+.crop-variety-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.crop-variety-table {
+  width: max-content;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.crop-variety-table td {
+  white-space: nowrap;
+  background: var(--white);
+}
+
+.sticky-col {
+  position: sticky;
+  z-index: 2;
+}
+.sticky-col.left {
+  left: 0;
+  background-color: var(--text-gray);
+  z-index: 3;
+  color: var(--black);
+}
+.sticky-col.right {
+  right: 0;
+}
+
+.crop-variety-table th:nth-child(1),
+.crop-variety-table td:nth-child(1) {
+  width: 160px;
+}
+.crop-variety-table th:nth-child(2),
+.crop-variety-table td:nth-child(2),
+.crop-variety-table th:nth-child(3),
+.crop-variety-table td:nth-child(3),
+.crop-variety-table th:nth-child(4),
+.crop-variety-table td:nth-child(4) {
+  width: 130px;
+}
+
+.crop-variety-table th:nth-child(n+5):not(:last-child),
+.crop-variety-table td:nth-child(n+5):not(:last-child) {
+  min-width: 140px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+

@@ -21,8 +21,9 @@ function HomePage() {
             <img src={mainImage} className="main-image" alt="Main-image" />
             <div className="image-overlay"></div>
             <div className="content">
-                <p>Welcome to Hela Helpers</p>
-                <ButtonLarge title='Get Started' onClick={handleOnGetStarted}/>
+                <h2>Welcome to Hela Helpers</h2>
+                <p>Empowering Farmers with Data-Driven Crop Suggestions</p>
+                <ButtonLarge title='What Should I Grow?' onClick={handleOnGetStarted}/>
             </div> 
         </div>
       </div>

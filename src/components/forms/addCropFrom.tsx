@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from '../button';
 import '../../constants/colors.css';
 import { addCrop } from '../../services/cropService';
+import '../../constants/commonStyle.css'
 
 function addCropForm() {
   const [crop, setCrop] = useState('');
@@ -14,7 +15,6 @@ function addCropForm() {
   const handleOnAddCrop = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      console.log("first");
       const result = await addCrop(crop);
       console.log(result);
       alert('Crop added successfully!');

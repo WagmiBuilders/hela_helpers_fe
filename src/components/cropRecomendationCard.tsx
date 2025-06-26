@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "./style/cropRecomendationCard.css";
+import { FaDownload } from "react-icons/fa";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas"; 
+
 
 interface Props {
   data: any;
@@ -13,11 +17,38 @@ const cropRecommendationCard: React.FC<Props> = ({ data }) => {
     <>
       <div className="suggestion-card" onClick={() => setShowModal(true)}>
         <div className="card-row">
-          <div className="card-left">
+          <div className="card-top">
             <h3>{cropVariety.crop.name}</h3>
             <p className="sub">{cropVariety.variety}</p>
+
+            <button
+              className="download-btn"
+              onClick={async (e) => {
+                e.stopPropagation(); 
+                setShowModal(true); 
+
+                setTimeout(async () => {
+                  const modalElement = document.querySelector(".modal");
+                  if (!modalElement) return;
+
+                  const canvas = await html2canvas(modalElement as HTMLElement);
+                  const imgData = canvas.toDataURL("image/png");
+                  const pdf = new jsPDF("p", "mm", "a4");
+
+                  const imgProps = pdf.getImageProperties(imgData);
+                  const pdfWidth = pdf.internal.pageSize.getWidth();
+                  const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                  pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+                  pdf.save(`${cropVariety.crop.name}_${cropVariety.variety}.pdf`);
+                }, 500); 
+              }}
+            >
+              <FaDownload />
+            </button>
           </div>
-          <div className="card-right">
+
+          <div className="card-bottom">
             <table>
                 <tbody>
                 <tr>
@@ -88,22 +119,33 @@ const cropRecommendationCard: React.FC<Props> = ({ data }) => {
                 </table>
                 ))}
             </section>
-
          
             <section>
-                <h4>Previous Year Prices</h4>
-                {previousYearPriceAverages.map((price: any, i: number) => (
-                <table className="detailed-table" key={i}>
-                    <tbody>
-                    <tr><td>District</td><td>{price.district}</td></tr>
-                    <tr><td>Period</td><td>{price.start} to {price.end}</td></tr>
-                    <tr><td>Farm Gate Price</td><td>Rs {price.farmGatePriceLkrPerKg}/kg</td></tr>
-                    <tr><td>Wholesale Price</td><td>Rs {price.wholesalePriceLkrPerKg}/kg</td></tr>
-                    <tr><td>Retail Price</td><td>Rs {price.retailPriceLkrPerKg}/kg</td></tr>
-                    </tbody>
-                </table>
-                ))}
+              <h4>Previous Year Prices</h4>
+              <table className="price-table">
+                <thead>
+                  <tr>
+                    <th>District</th>
+                    <th>Period</th>
+                    <th>Farm Gate Price (Rs/kg)</th>
+                    <th>Wholesale Price (Rs/kg)</th>
+                    <th>Retail Price (Rs/kg)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {previousYearPriceAverages.map((price: any, i: number) => (
+                    <tr key={i}>
+                      <td>{price.district}</td>
+                      <td>{price.start} to {price.end}</td>
+                      <td>{price.farmGatePriceLkrPerKg}</td>
+                      <td>{price.wholesalePriceLkrPerKg}</td>
+                      <td>{price.retailPriceLkrPerKg}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </section>
+
             </div>
         </div>
         )}

@@ -2,7 +2,6 @@ import './style/publicSuggestionPage.css'
 import PublicSuggestionForm from '../components/forms/publicSuggestionForm'
 import CropRecommendationCard from '../components/cropRecomendationCard'
 import { useState } from 'react'
-import { testRecommendation } from '../constants/dummyData';
 
 
 function publicSuggestionPage() {
@@ -24,7 +23,6 @@ function publicSuggestionPage() {
         ) : (
           <p className='no-suggestion'>No suggestions yet.</p>
         )}
-        <CropRecommendationCard data={testRecommendation}/>
         </div>
     </div>
   )
