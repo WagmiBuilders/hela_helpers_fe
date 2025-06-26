@@ -7,9 +7,11 @@
   gap: 1.5rem;
   background-color: var(--bg-gray);
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .request {
+  margin-top: 2rem;
   width: 35%;
   min-width: 300px;
   overflow-y: auto;
@@ -34,6 +36,4 @@
   color: var(--text-gray);
   align-items: center;
   justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }

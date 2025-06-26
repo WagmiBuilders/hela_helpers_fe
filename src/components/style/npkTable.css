@@ -1,0 +1,17 @@
+@import '../../constants/colors.css';
+
+.npk-table h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.npk-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.npk-table input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 14px;
+}

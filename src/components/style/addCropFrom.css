@@ -8,8 +8,6 @@
   border-radius: 5px;
   width: 100%;
   background-color: var(--white);
-  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease; */
   margin-bottom: 2rem;
 }
 

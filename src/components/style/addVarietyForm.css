@@ -1,0 +1,133 @@
+@import '../../constants/colors.css';
+
+.form-container {
+  max-width: 100%;
+  padding: 1.5rem;
+  background-color: var(--white);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  text-align: left;
+  margin-bottom: 0.3rem;
+  color: var(--text-gray);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--bg-gray);
+  outline: none;
+}
+
+.rotation-section {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.rotation-section input[type="text"] {
+  flex-grow: 1;
+}
+
+.rotation-section button {
+  background-color: var(--text-light);
+  border: none;
+  color: var(--text-dark);
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.rotation-list {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: var(--bg-light);
+  flex: 1 1 100%;
+}
+
+.rotation-list li {
+  line-height: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.checkbox-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.checkbox-item {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.rotation-inline {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.rotation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.rotation-tag {
+  background-color: var(--bg-gray);
+  border-radius: 5px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--bg-dark);
+}
+
+.rotation-tag button {
+  background: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+@media (max-width: 650px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .form-group {
+    min-width: 100%;
+  }
+  .rotation-list {
+    max-height: 150px;
+  }
+}
