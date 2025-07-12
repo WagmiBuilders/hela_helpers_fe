@@ -1,0 +1,17 @@
+@import '../../constants/colors.css';
+
+.button-large {
+  padding: 1.5rem 5rem;
+  background-color: var(--bg-light);
+  color: var(--white); 
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  border-width: 1px ;
+  box-shadow: 0 4px 10px 8px rgba(17, 63, 6, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-large:hover {
+  box-shadow: 0 6px 14px 10px rgba(18, 20, 17, 0.2);
+}

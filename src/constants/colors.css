@@ -1,0 +1,14 @@
+
+  :root {
+  --bg-dark: #255e1a;
+  --bg-light: #6eba61;
+  --bg-gray: #f0f4f06d;
+
+  --text-dark: #255e1a;
+  --text-light: #ceeec8;
+  --text-gray: #808280;
+  --text-highlight: #6c420c;
+
+  --black: #000000;
+  --white: #ffffff;
+}
