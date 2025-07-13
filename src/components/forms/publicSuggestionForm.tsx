@@ -1,38 +1,51 @@
-import { useState, useEffect } from 'react';
-import '../style/publicSuggestionForm.css';
-import Button from '../button';
-import '../../constants/colors.css';
+import { useState, useEffect } from "react";
+import "../style/publicSuggestionForm.css";
+import Button from "../button";
+import "../../constants/colors.css";
 import {
   getCropSuggestion,
   getAllDistricts,
-  getAllSoilType
-} from '../../services/publicService';
+  getAllSoilType,
+} from "../../services/publicService";
 
 interface Props {
   onSuggest: (data: any[]) => void;
+  onAiResponse: (data: string) => void;
+  showAIResponse: boolean;
+  setShowAIResponse: (data: boolean) => void;
 }
 
-function PublicSuggestionForm({ onSuggest }: Props) {
+function PublicSuggestionForm({
+  onSuggest,
+  onAiResponse,
+  showAIResponse,
+  setShowAIResponse,
+}: Props) {
   const [formData, setFormData] = useState({
-    district: '',
-    soilType: '',
-    cultivableArea: '',
-    budget: '',
-    irrigationCapacity: '',
+    district: "",
+    soilType: "",
+    cultivableArea: "",
+    budget: "",
+    irrigationCapacity: "",
   });
 
-  const [districtOptions, setDistrictOptions] = useState<{ id: number; name: string }[]>([]);
-  const [soilTypeOptions, setSoilTypeOptions] = useState<string[]>([]); 
+  const [districtOptions, setDistrictOptions] = useState<
+    { id: number; name: string }[]
+  >([]);
+  const [soilTypeOptions, setSoilTypeOptions] = useState<string[]>([]);
+  const [showAIButton, setShowAIButton] = useState<boolean>(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-  const { name, value } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
 
-  setFormData(prev => ({
-    ...prev,
-    [name]: ['cultivableArea', 'budget', 'irrigationCapacity'].includes(name)
-      ? parseFloat(value)
-      : value
-  }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: ["cultivableArea", "budget", "irrigationCapacity"].includes(name)
+        ? parseFloat(value)
+        : value,
+    }));
   };
 
   useEffect(() => {
@@ -43,7 +56,7 @@ function PublicSuggestionForm({ onSuggest }: Props) {
         setDistrictOptions(districts);
         setSoilTypeOptions(soilTypes);
       } catch (err) {
-        console.error('Error loading options:', err);
+        console.error("Error loading options:", err);
       }
     };
 
@@ -55,9 +68,13 @@ function PublicSuggestionForm({ onSuggest }: Props) {
     console.log("request: ", formData);
     try {
       const result = await getCropSuggestion(formData);
+      if (result.airesponse) {
+        onAiResponse(result.airesponse);
+        setShowAIButton(true)
+      }
       onSuggest(result);
     } catch (err) {
-      alert('Error fetching suggestions.');
+      alert("Error fetching suggestions.");
       console.error(err);
     }
   };
@@ -66,7 +83,12 @@ function PublicSuggestionForm({ onSuggest }: Props) {
     <div>
       <p className="form-title">Enter Your Farming Conditions Below</p>
       <form className="suggestion-form" onSubmit={handleSubmit}>
-        <select name="district" value={formData.district} onChange={handleChange} required>
+        <select
+          name="district"
+          value={formData.district}
+          onChange={handleChange}
+          required
+        >
           <option value="">Select District</option>
           {districtOptions.map((district) => (
             <option key={district.id} value={district.name}>
@@ -75,7 +97,12 @@ function PublicSuggestionForm({ onSuggest }: Props) {
           ))}
         </select>
 
-        <select name="soilType" value={formData.soilType} onChange={handleChange} required>
+        <select
+          name="soilType"
+          value={formData.soilType}
+          onChange={handleChange}
+          required
+        >
           <option value="">Select Soil Type</option>
           {soilTypeOptions.map((type) => (
             <option key={type} value={type}>
@@ -111,7 +138,7 @@ function PublicSuggestionForm({ onSuggest }: Props) {
 
         <div className="form-button">
           <Button
-            onClick={()=>{}}
+            onClick={() => {}}
             title="Get Suggestion"
             type="submit"
             bgColor="var(--bg-dark)"
@@ -119,6 +146,21 @@ function PublicSuggestionForm({ onSuggest }: Props) {
           />
         </div>
       </form>
+      {showAIButton && (
+        <div className="show-ai-button">
+          <Button
+            onClick={() => {
+              setShowAIResponse(true);
+            }}
+            title="Show AI Response"
+            type="button"
+            style={{
+              backgroundColor: "var(--bg-dark)",
+              color: "var(--text-light)",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }
