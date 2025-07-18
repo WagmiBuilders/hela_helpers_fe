@@ -1,6 +1,6 @@
 import React from 'react';
 import './style/adminNavbar.css';
-import profile from '../images/profile.avif';
+import profile from '../images/profile.jpeg';
 import Button from './button';
 import '../constants/colors.css';
 
@@ -26,6 +26,10 @@ const adminNavbar: React.FC<AdminNavbarProps> = ({ setSelectedOption }) => {
         <ul>
           <li onClick={() => setSelectedOption('Dashboard')}>Dashboard</li>
           <li onClick={() => setSelectedOption('Crop')}>Crop</li>
+          <li onClick={() => setSelectedOption('NPK')}>NPK</li>
+          <li onClick={() => setSelectedOption('Zone')}>Zone</li>
+          <li onClick={() => setSelectedOption('Variety')}>Crop-Variety</li>
+          <li onClick={() => setSelectedOption('MarketPrice')}>Market-Price</li>
         </ul>
       </div>
 
@@ -33,7 +37,7 @@ const adminNavbar: React.FC<AdminNavbarProps> = ({ setSelectedOption }) => {
         <Button
           title='Logout'
           onClick={handleOnLogout}
-          bgColor='var(--bg-dark)'
+          bgColor='var(--bg-darkGreen)'
           textColor='var(--text-light)'
         />
       </div>

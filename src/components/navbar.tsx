@@ -19,7 +19,7 @@ function navbar() {
        <Button 
           title="Sign In" 
           onClick={handleOnSignIn}
-          bgColor="var(--bg-dark)"
+          bgColor="var(--bg-darkGreen)"
           textColor="var(--text-light)"
         />
        <Button 

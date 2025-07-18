@@ -1,6 +1,7 @@
 import './style/cropCard.css';
 import { FaEdit, FaTrash, FaCheck, FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
+import '../constants/commonStyle.css'
 
 interface CropCardProps {
   crop: {
@@ -47,7 +48,7 @@ function cropCard({ crop, onEdit, onDelete }: CropCardProps) {
         <span className="crop-name">{crop.name}</span>
       )}
 
-      <div className="card-buttons">
+      <div className="actions">
         {isEditing ? (
           <>
             <button className="edit-btn" onClick={handleSave}>
