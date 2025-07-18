@@ -80,7 +80,7 @@ function addNpkForm() {
           title='Add NPK'
           onClick={() => {}}
           type='submit'
-          bgColor='var(--bg-dark)'
+          bgColor='var(--bg-darkGreen)'
           textColor='var(--text-light)'
         />
       </form>

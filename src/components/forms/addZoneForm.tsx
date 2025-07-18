@@ -123,7 +123,7 @@ function addZoneForm() {
       <Button
         title='Add Zone'
         onClick={() => {}}
-        bgColor='var(--bg-dark)'
+        bgColor='var(--bg-darkGreen)'
         textColor='var(--text-light)'
         type='submit'
       />

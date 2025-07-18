@@ -44,7 +44,7 @@
 .selected-districts {
   padding: 0.7rem;
   background: var(--text-light);
-  border-left: 4px solid var(--bg-dark);
+  border-left: 4px solid var(--bg-darkGreen);
   border-radius: 2px;
   font-size: 0.95rem;
 }

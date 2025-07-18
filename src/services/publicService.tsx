@@ -31,3 +31,5 @@ export const getAllSoilType = async () => {
     throw error;
   }
 };
+
+

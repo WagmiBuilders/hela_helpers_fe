@@ -39,7 +39,7 @@ function addCropForm() {
         type='submit'
         title='Add Crop'
         onClick={() => {}} 
-        bgColor='var(--bg-dark)'
+        bgColor='var(--bg-darkGreen)'
         textColor='var(--text-light)'
       />
     </form>

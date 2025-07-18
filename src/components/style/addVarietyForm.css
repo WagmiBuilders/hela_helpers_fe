@@ -108,7 +108,7 @@ select:focus {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  border: 1px solid var(--bg-dark);
+  border: 1px solid var(--bg-darkGreen);
 }
 
 .rotation-tag button {

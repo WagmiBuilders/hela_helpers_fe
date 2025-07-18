@@ -141,7 +141,7 @@ function PublicSuggestionForm({
             onClick={() => {}}
             title="Get Suggestion"
             type="submit"
-            bgColor="var(--bg-dark)"
+            bgColor="var(--bg-darkGreen)"
             textColor="var(--text-light)"
           />
         </div>
@@ -155,7 +155,7 @@ function PublicSuggestionForm({
             title="Show AI Response"
             type="button"
             style={{
-              backgroundColor: "var(--bg-dark)",
+              backgroundColor: "var(--bg-darkGreen)",
               color: "var(--text-light)",
             }}
           />
