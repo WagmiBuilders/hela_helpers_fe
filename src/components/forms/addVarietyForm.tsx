@@ -285,7 +285,7 @@ function addVarietyForm({ existingData }: Props) {
           title='Add Variety'
           onClick={() => {}}
           type='submit'
-          bgColor='var(--bg-dark)'
+          bgColor='var(--bg-darkGreen)'
           textColor='var(--text-light)'
         />
       </form>

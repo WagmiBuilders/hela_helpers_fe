@@ -37,7 +37,7 @@ const adminNavbar: React.FC<AdminNavbarProps> = ({ setSelectedOption }) => {
         <Button
           title='Logout'
           onClick={handleOnLogout}
-          bgColor='var(--bg-dark)'
+          bgColor='var(--bg-darkGreen)'
           textColor='var(--text-light)'
         />
       </div>

@@ -187,7 +187,7 @@ function AddMarketPriceForm({ existingData }: Props) {
         <Button
           title={formData.id ? 'Update Market Price' : 'Add Market Price'}
           type="submit"
-          bgColor='var(--bg-dark)'
+          bgColor='var(--bg-darkGreen)'
           textColor='var(--text-light)'
           onClick={()=>{}}
         />
