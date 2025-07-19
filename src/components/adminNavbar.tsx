@@ -29,7 +29,8 @@ const adminNavbar: React.FC<AdminNavbarProps> = ({ setSelectedOption }) => {
           <li onClick={() => setSelectedOption('NPK')}>NPK</li>
           <li onClick={() => setSelectedOption('Zone')}>Zone</li>
           <li onClick={() => setSelectedOption('Variety')}>Crop-Variety</li>
-          <li onClick={() => setSelectedOption('MarketPrice')}>Market-Price</li>
+          <li onClick={() => setSelectedOption('MarketPrice')}>Market Price</li>
+          <li onClick={() => setSelectedOption('Subscribers')}>Subscribers</li>
         </ul>
       </div>
 

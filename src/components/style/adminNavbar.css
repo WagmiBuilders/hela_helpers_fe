@@ -42,7 +42,7 @@
 }
 
 .options li {
-  padding: 12px 16px;
+  padding: 5px 16px;
   margin: 8px 0;
   border-width: 1rem;
   border-color: var(--bg-darkGreen);
@@ -62,4 +62,5 @@
 .logout-button {
   text-align: center;
 }
+
 

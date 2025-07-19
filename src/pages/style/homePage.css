@@ -1,6 +1,6 @@
 @import '../../constants/colors.css';
 
-.container {
+.container-home {
   display: grid;
   grid-template-rows: 90px 1fr;
   height: 100vh;

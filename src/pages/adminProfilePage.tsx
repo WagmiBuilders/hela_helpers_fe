@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Button from '../components/button';
 import CropVarietyDetail from '../components/cropVarietyDetail';
 import '../constants/commonStyle.css'
+import SubscribedUsersList from '../components/SubscribedUsersList';
 
 import AddCropForm from '../components/forms/addCropFrom';
 import AddNpkForm from '../components/forms/addNpkFrom';
@@ -78,7 +79,7 @@ interface CropVariety {
   };
 }
 
-function profile() {
+const Profile=()=> {
   const [viewVarietyData, setViewVarietyData] = useState<CropVariety | null>(null);
   const [selectedOption, setSelectedOption] = useState('Dashboard');
   const [showAddPopup, setShowAddPopup] = useState(false);
@@ -111,6 +112,7 @@ function profile() {
       const crops = await getAllCrops();
       setCropList(crops);
     } catch (error) {
+      console.error(error);
       alert('Failed to load crops');
     }
   };
@@ -120,6 +122,7 @@ function profile() {
       await updateCrop(id, newName);
       fetchCropList();
     } catch (error) {
+      console.error(error);
       alert('Failed to update crop');
     }
   };
@@ -129,6 +132,7 @@ function profile() {
       await deleteCrop(id);
       fetchCropList();
     } catch (error) {
+      console.error(error);
       alert('Failed to delete crop');
     }
   };
@@ -139,6 +143,7 @@ function profile() {
       const NPKs = await getAllNpkSchedules();
       setNpkList(NPKs);
     } catch (error) {
+      console.error(error);
       alert('Failed to load NPK schedules');
     }
   };
@@ -148,6 +153,7 @@ function profile() {
       await updateNpkSchedule(id, newData);
       fetchNpkScheduleList();
     } catch (error) {
+      console.error(error);
       alert('Failed to update NPK schedule');
     }
   };
@@ -157,6 +163,7 @@ function profile() {
       await deleteNpkSchedule(id);
       fetchNpkScheduleList();
     } catch (error) {
+      console.error(error);
       alert('Failed to delete NPK schedule');
     }
   };
@@ -167,6 +174,7 @@ function profile() {
       const zones = await getAllZones();
       setZoneList(zones);
     } catch (error) {
+      console.error(error);
       alert('Failed to load Zones');
     }
   };
@@ -176,6 +184,7 @@ function profile() {
       await updateZone(id, newData);
       fetchZoneList();
     } catch (error) {
+      console.error(error);
       alert('Failed to update zone');
     }
   };
@@ -185,6 +194,7 @@ function profile() {
       await deleteZone(id);
       fetchZoneList();
     } catch (error) {
+      console.error(error);
       alert('Failed to delete zone');
     }
   };
@@ -195,6 +205,7 @@ function profile() {
       const cropVarieties = await getAllCropVarieties();
       setCropVarietyList(cropVarieties);
     } catch (error) {
+      console.error(error);
       alert('Failed to load Crop Varieties');
     }
   };
@@ -205,6 +216,7 @@ function profile() {
     setEditVarietyData(existingData);
     setShowAddPopup(true);
   } catch (error) {
+    console.error(error);
     alert('Failed to load crop variety details');
   }
 };
@@ -215,6 +227,7 @@ function profile() {
       await deleteCropVariety(id);
       fetchCropVarietyList();
     } catch (error) {
+      console.error(error);
       alert('Failed to delete crop variety');
     }
   };
@@ -230,6 +243,7 @@ function profile() {
       const marketPrices = await getAllMarketPrice();
       setMarketPriceList(marketPrices);
     } catch (error) {
+      console.error(error);
       alert('Failed to load Market Prices');
     }
   };
@@ -242,6 +256,7 @@ function profile() {
     setEditMarketPriceData(existingData);
     setShowAddPopup(true);
   } catch (error) {
+    console.error(error);
     alert('Failed to load market price');
   }
 };
@@ -252,6 +267,7 @@ function profile() {
       await deleteMarketPrice(id);
       fetchMarketPriceList();
     } catch (error) {
+      console.error(error);
       alert('Failed to delete market price');
     }
   };
@@ -417,9 +433,21 @@ function profile() {
        </>
         )}
 
+        {selectedOption === 'Subscribers' && (
+          <>
+            <div className='admin-body-header'>
+              <h2>Subscribed Users Management</h2>
+            </div>
+
+            <div className='admin-body-content'>
+              <SubscribedUsersList />
+            </div>
+          </>
+        )}
+
       </div>
     </div>
   );
 }
 
-export default profile;
+export default Profile;
