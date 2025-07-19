@@ -38,12 +38,14 @@ import {
   deleteMarketPrice,
   getMarketPriceById 
 } from '../services/marketPriceService';
+import { getAllSubscribedUsers } from '../services/subscribeService';
 
 import NpkTable from '../components/npkTable';
 import CropCard from '../components/cropCard';
 import ZoneTable from '../components/zoneTable';
 import CropVarietyTable from '../components/cropVarietyTable';
 import MarketPriceTable from '../components/marketPriceTable';
+import DashboardStats from '../components/DashboardStats';
 
 interface CropVariety {
   id: number;
@@ -88,6 +90,13 @@ const Profile=()=> {
   const [zoneList, setZoneList] = useState([]);
   const [cropVarietyList, setCropVarietyList] = useState([]);
   const [marketPriceList, setMarketPriceList] = useState([]);
+  const [dashboardStats, setDashboardStats] = useState({
+    subscribedUsers: 0,
+    crops: 0,
+    varieties: 0,
+    zones: 0,
+    lastPredictionTime: ''
+  });
 
   const [editVarietyData, setEditVarietyData] = useState(null);
   const [editMarketPriceData, setEditMarketPriceData] = useState(null);
@@ -103,8 +112,31 @@ const Profile=()=> {
       fetchCropVarietyList();
     } else if (selectedOption === 'MarketPrice') {
       fetchMarketPriceList();
+    } else if (selectedOption === 'Dashboard') {
+      fetchDashboardStats();
     }
   }, [selectedOption]);
+
+  const fetchDashboardStats = async () => {
+    try {
+      const [users, cropsData, varietiesData, zonesData] = await Promise.all([
+        getAllSubscribedUsers(),
+        getAllCrops(),
+        getAllCropVarieties(),
+        getAllZones()
+      ]);
+
+      setDashboardStats({
+        subscribedUsers: users.length,
+        crops: cropsData.length,
+        varieties: varietiesData.length,
+        zones: zonesData.length,
+        lastPredictionTime: new Date().toLocaleString()
+      });
+    } catch (error) {
+      console.error('Error fetching dashboard stats:', error);
+    }
+  };
 
   //----------------Crop---------------------------------------------
   const fetchCropList = async () => {
@@ -303,7 +335,11 @@ const Profile=()=> {
       </div>
 
       <div className='admin-body'>
-        {selectedOption === 'Dashboard' && <h2>Dashboard</h2>}
+        {selectedOption === 'Dashboard' && (
+          <div className='section-container'>
+            <DashboardStats {...dashboardStats} />
+          </div>
+        )}
 
         {selectedOption === 'Crop' && (
           <>

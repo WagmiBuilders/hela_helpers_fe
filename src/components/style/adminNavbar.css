@@ -18,6 +18,9 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  padding: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--border);
+  flex-shrink: 0; /* Prevent profile section from shrinking */
 }
 
 .profile-image img {
@@ -32,6 +35,13 @@
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font-size: 1rem;
    color: var(--text-gray);
+}
+
+.options {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
 }
 
 .options ul {
@@ -59,8 +69,20 @@
   border: 1px solid var(--bg-darkGreen);
 }
 
+/* Custom scrollbar for Webkit browsers */
+.options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.options::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.options::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
 .logout-button {
   text-align: center;
 }
-
-
