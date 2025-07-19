@@ -70,3 +70,27 @@ export const getSubscribedUserByPhone = async (phoneNumber: string) => {
     throw error;
   }
 };
+
+// Send notification to users
+// export const sendNotificationToUsers = async (message: string) => {
+//   try {
+//     const response = await axios.post(`${BASE_URL}/send-notification`, { message });
+//     console.log("Notification sent:", response);
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error sending notification:', error);
+//     throw error;
+//   }
+// };
+
+// Trigger predictions for all locations
+export const triggerPredictionsForAllLocations = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/admin/weather/predict-all-locations`);
+    console.log("Predictions triggered for all locations:", response);
+    return response.data;
+  } catch (error) {
+    console.error('Error triggering predictions:', error);
+    throw error;
+  }
+};

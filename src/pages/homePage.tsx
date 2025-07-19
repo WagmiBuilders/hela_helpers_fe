@@ -15,7 +15,7 @@ function HomePage() {
   };
 
   return (
-    <div className="container">
+    <div className="container-home bg-red-500">
       <div className="header">
         <Header />
       </div>
