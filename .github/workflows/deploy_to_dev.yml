@@ -1,0 +1,54 @@
+name: Deploy React App to Nginx
+
+on:
+  push:
+    branches:
+      - dev  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        
+
+    - name: Install Dependencies
+      run:  npm ci --legacy-peer-deps
+
+
+    - name: Build React App
+      env:
+        CI: false
+      run: |
+        ls
+        npm run build
+
+    - name: Archive React Build
+      run: tar -czf hela-helpers-build.tar.gz -C dist/ .
+
+    - name: Copy Archive to Server
+      uses: appleboy/scp-action@master
+      with:
+        host: "${{ secrets.HOST }}"
+        username: "${{ secrets.USERNAME }}"
+        password: "${{ secrets.PASSWORD }}"
+        source: "hela-helpers-build.tar.gz"
+        target: "/usr/share/nginx/html/hela-fe"
+
+    - name: Extract Archive on Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: "${{ secrets.HOST }}"
+        username: "${{ secrets.USERNAME }}"
+        password: "${{ secrets.PASSWORD }}"
+        script: |
+          cd /usr/share/nginx/html/hela-fe
+          tar -xzf hela-helpers-build.tar.gz
+          rm hela-helpers-build.tar.gz

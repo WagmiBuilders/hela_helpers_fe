@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
-import { getAllSubscribedUsers, triggerPredictionsForAllLocations } from '../services/subscribeService';
-import './style/SubscribedUsersList.css';
+import { useEffect, useState } from "react";
+import {
+  getAllSubscribedUsers,
+  triggerPredictionsForAllLocations,
+} from "../services/subscribeService";
+import "./style/SubscribedUsersList.css";
 
 interface SubscribedUser {
   id: number;
@@ -12,7 +15,11 @@ interface SubscribedUser {
 const SubscribedUsersList = () => {
   const [users, setUsers] = useState<SubscribedUser[]>([]);
   const [loading, setLoading] = useState(false);
-  const [notification, setNotification] = useState({ show: false, type: '', message: '' });
+  const [notification, setNotification] = useState({
+    show: false,
+    type: "",
+    message: "",
+  });
 
   useEffect(() => {
     fetchUsers();
@@ -23,19 +30,34 @@ const SubscribedUsersList = () => {
       const data = await getAllSubscribedUsers();
       setUsers(data);
     } catch (error) {
-        console.error('Error fetching users:', error);
-      setNotification({ show: true, type: 'error', message: 'Failed to fetch users' });
+      console.error("Error fetching users:", error);
+      setNotification({
+        show: true,
+        type: "error",
+        message: "Failed to fetch users",
+      });
     }
   };
 
   const handleSendPredictions = async () => {
     setLoading(true);
     try {
-      await triggerPredictionsForAllLocations();
-      setNotification({ show: true, type: 'success', message: 'Weather predictions triggered successfully' });
+      const response = await triggerPredictionsForAllLocations();
+      setNotification({
+        show: true,
+        type: "success",
+        message:
+          response || "Weather predictions triggered successfully",
+      });
     } catch (error) {
-        console.error('Error triggering predictions:', error);
-      setNotification({ show: true, type: 'error', message: 'Failed to trigger weather predictions' });
+      console.error("Error triggering predictions:", error);
+      setNotification({
+        show: true,
+        type: "error",
+        message:
+          error?.response?.data?.message ||
+          "Failed to trigger weather predictions",
+      });
     }
     setLoading(false);
   };
@@ -50,7 +72,7 @@ const SubscribedUsersList = () => {
           disabled={loading}
           className="send-notification-btn"
         >
-          {loading ? 'Processing...' : 'Trigger Weather Predictions'}
+          {loading ? "Processing..." : "Trigger Weather Predictions"}
         </button>
       </div>
 
@@ -74,7 +96,7 @@ const SubscribedUsersList = () => {
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.phoneNumber}</td>
-                <td>{user.email || '-'}</td>
+                <td>{user.email || "-"}</td>
               </tr>
             ))}
           </tbody>

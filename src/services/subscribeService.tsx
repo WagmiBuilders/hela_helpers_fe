@@ -87,7 +87,7 @@ export const getSubscribedUserByPhone = async (phoneNumber: string) => {
 export const triggerPredictionsForAllLocations = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/admin/weather/predict-all-locations`);
-    console.log("Predictions triggered for all locations:", response);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error('Error triggering predictions:', error);
