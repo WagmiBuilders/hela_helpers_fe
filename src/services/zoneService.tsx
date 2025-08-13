@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../constants/api';
 
-export const addZone = async (data: any) => {
+export const addZone = async (data: unknown) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/admin/zones`, data);
     return response.data;
@@ -21,7 +21,7 @@ export const getAllZones = async () => {
   }
 };
 
-export const updateZone = async (id: number, data: any) => {
+export const updateZone = async (id: number, data: unknown) => {
   try {
     const response = await axios.put(`${API_BASE_URL}/admin/zones/${id}`, data);
     return response.data;

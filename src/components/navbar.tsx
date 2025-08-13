@@ -3,7 +3,7 @@ import './style/navbar.css'
 import '../constants/colors.css'
 import { useNavigate } from "react-router-dom";
 
-function navbar() {
+function Navbar() {
   const navigate = useNavigate();
 
   const handleOnSignIn = () => {
@@ -32,4 +32,4 @@ function navbar() {
   )
 }
 
-export default navbar
+export default Navbar

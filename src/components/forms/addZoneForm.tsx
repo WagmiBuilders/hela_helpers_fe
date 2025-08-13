@@ -6,7 +6,7 @@ import '../../constants/colors.css'
 import { addZone } from '../../services/zoneService';
 import '../../constants/commonStyle.css'
 
-function addZoneForm() {
+function AddZoneForm() {
   const [districts, setDistricts] = useState<{ id: number; name: string }[]>([]);
   const [formData, setFormData] = useState({
     zoneCode: '',
@@ -25,6 +25,7 @@ function addZoneForm() {
       const data = await getAllDistricts();
       setDistricts(data);
     } catch (error) {
+      console.log(error);
       console.error('Failed to fetch districts');
     }
   };
@@ -56,6 +57,7 @@ function addZoneForm() {
       console.log(result);
       alert('Zone added successfully!');
     } catch (error) {
+      console.log(error);
       alert('Failed to add Zone');
     }
   };
@@ -131,4 +133,4 @@ function addZoneForm() {
   );
 }
 
-export default addZoneForm;
+export default AddZoneForm;

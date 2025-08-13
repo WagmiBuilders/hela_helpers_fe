@@ -5,7 +5,7 @@ import '../../constants/colors.css'
 import { addNpkSchedule } from '../../services/npkService';
 import '../../constants/commonStyle.css'
 
-function addNpkForm() {
+function AddNpkForm() {
   const [formData, setFormData] = useState({
     name: '',
     potassium: '',
@@ -30,6 +30,7 @@ function addNpkForm() {
       console.log(result);
       alert('NPK Schedule added successfully!');
     } catch (error) {
+      console.log(error);
       alert('Failed to add NPK Schedule');
     }
   };
@@ -88,4 +89,4 @@ function addNpkForm() {
   );
 }
 
-export default addNpkForm;
+export default AddNpkForm;

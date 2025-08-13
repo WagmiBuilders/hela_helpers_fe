@@ -2,17 +2,51 @@ import './style/cropVarietyTable.css';
 import { FaEdit, FaTrash, FaEye} from 'react-icons/fa';
 import '../constants/commonStyle.css'
 
+
 interface CropVariety {
   id: number;
   variety: string;
+  crop: {
+    id: number;
+    name: string;
+  };
+  zoneFit: {
+    id: number;
+    zoneCode: string;
+    avgRainfallMm: number;
+    avgTempC: number;
+    soilSeries: string;
+    districts: {
+      id: number;
+      name: string;
+    }[];
+  }[];
   soilCompatibility: string;
   maturityDays: number;
   waterNeedsMm: number;
   yieldKgPerHa: number;
   pestDiseaseIndex: number;
-  rotationOptions: string;
+  rotationOptions: string[] | string;
   seedRateKgPerHa: number;
+  npkSchedule: {
+    id: number;
+    name: string;
+    nitrogen: number;
+    phosphorus: number;
+    potassium: number;
+  };
 }
+// interface CropVariety {
+//   id: number;
+//   variety: string;
+//   soilCompatibility: string;
+//   maturityDays: number;
+//   waterNeedsMm: number;
+//   yieldKgPerHa: number;
+//   pestDiseaseIndex: number;
+//   rotationOptions: string;
+//   seedRateKgPerHa: number;
+// }
 
 interface Props {
   cropVarietyList: CropVariety[];

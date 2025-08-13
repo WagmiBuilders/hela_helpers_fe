@@ -1,168 +1,167 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import "../style/publicSuggestionForm.css";
 import Button from "../button";
 import "../../constants/colors.css";
 import {
-  getCropSuggestion,
-  getAllDistricts,
-  getAllSoilType,
+    getCropSuggestion,
+    getAllDistricts,
+    getAllSoilType,
 } from "../../services/publicService";
+import type {SuggestionPayload} from "../../pages/publicSuggestionPage.tsx";
 
 interface Props {
-  onSuggest: (data: any[]) => void;
-  onAiResponse: (data: string) => void;
-  showAIResponse: boolean;
-  setShowAIResponse: (data: boolean) => void;
+    onAiResponse: (data: string) => void,
+    showAIResponse: boolean,
+    setShowAIResponse: (data: boolean) => void,
+    onSuggest: (data: SuggestionPayload) => void
 }
 
 function PublicSuggestionForm({
-  onSuggest,
-  onAiResponse,
-  showAIResponse,
-  setShowAIResponse,
-}: Props) {
-  const [formData, setFormData] = useState({
-    district: "",
-    soilType: "",
-    cultivableArea: "",
-    budget: "",
-    irrigationCapacity: "",
-  });
+                                  onAiResponse,
+                                  setShowAIResponse,
+                                  onSuggest
+                              }: Props) {
+    const [formData, setFormData] = useState({
+        district: "",
+        soilType: "",
+        cultivableArea: "",
+        budget: "",
+        irrigationCapacity: "",
+    });
 
-  const [districtOptions, setDistrictOptions] = useState<
-    { id: number; name: string }[]
-  >([]);
-  const [soilTypeOptions, setSoilTypeOptions] = useState<string[]>([]);
-  const [showAIButton, setShowAIButton] = useState<boolean>(false);
+    const [districtOptions, setDistrictOptions] = useState<
+        { id: number; name: string }[]
+    >([]);
+    const [soilTypeOptions, setSoilTypeOptions] = useState<string[]>([]);
+    const [showAIButton, setShowAIButton] = useState<boolean>(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+        const {name, value} = e.target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: ["cultivableArea", "budget", "irrigationCapacity"].includes(name)
-        ? parseFloat(value)
-        : value,
-    }));
-  };
-
-  useEffect(() => {
-    const fetchOptions = async () => {
-      try {
-        const districts = await getAllDistricts();
-        const soilTypes = await getAllSoilType();
-        setDistrictOptions(districts);
-        setSoilTypeOptions(soilTypes);
-      } catch (err) {
-        console.error("Error loading options:", err);
-      }
+        setFormData((prev) => ({
+            ...prev,
+            [name]: ["cultivableArea", "budget", "irrigationCapacity"].includes(name)
+                ? parseFloat(value)
+                : value,
+        }));
     };
 
-    fetchOptions();
-  }, []);
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const districts = await getAllDistricts();
+                const soilTypes = await getAllSoilType();
+                setDistrictOptions(districts);
+                setSoilTypeOptions(soilTypes);
+            } catch (err) {
+                console.error("Error loading options:", err);
+            }
+        };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("request: ", formData);
-    try {
-      const result = await getCropSuggestion(formData);
-      if (result.airesponse) {
-        onAiResponse(result.airesponse);
-        setShowAIButton(true)
-      }
-      onSuggest(result);
-    } catch (err) {
-      alert("Error fetching suggestions.");
-      console.error(err);
-    }
-  };
+        fetchOptions();
+    }, []);
 
-  return (
-    <div>
-      <p className="form-title">Enter Your Farming Conditions Below</p>
-      <form className="suggestion-form" onSubmit={handleSubmit}>
-        <select
-          name="district"
-          value={formData.district}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select District</option>
-          {districtOptions.map((district) => (
-            <option key={district.id} value={district.name}>
-              {district.name}
-            </option>
-          ))}
-        </select>
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("request: ", formData);
+        try {
+            const result = await getCropSuggestion(formData);
+            if (result.airesponse) {
+                onAiResponse(result.airesponse);
+                setShowAIButton(true)
+            }
+            onSuggest(result);
+        } catch (err) {
+            alert("Error fetching suggestions.");
+            console.error(err);
+        }
+    };
 
-        <select
-          name="soilType"
-          value={formData.soilType}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Soil Type</option>
-          {soilTypeOptions.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
+    return (
+        <div>
+            <p className="form-title">Enter Your Farming Conditions Below</p>
+            <form className="suggestion-form" onSubmit={handleSubmit}>
+                <select
+                    name="district"
+                    value={formData.district}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Select District</option>
+                    {districtOptions.map((district) => (
+                        <option key={district.id} value={district.name}>
+                            {district.name}
+                        </option>
+                    ))}
+                </select>
 
-        <input
-          type="number"
-          name="cultivableArea"
-          value={formData.cultivableArea}
-          onChange={handleChange}
-          placeholder="Cultivable Area (in acres)"
-          required
-        />
-        <input
-          type="number"
-          name="budget"
-          value={formData.budget}
-          onChange={handleChange}
-          placeholder="Budget (in LKR)"
-          required
-        />
-        <input
-          type="number"
-          name="irrigationCapacity"
-          value={formData.irrigationCapacity}
-          onChange={handleChange}
-          placeholder="Irrigation Capacity (L/day)"
-          required
-        />
+                <select
+                    name="soilType"
+                    value={formData.soilType}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Select Soil Type</option>
+                    {soilTypeOptions.map((type) => (
+                        <option key={type} value={type}>
+                            {type}
+                        </option>
+                    ))}
+                </select>
 
-        <div className="form-button">
-          <Button
-            onClick={() => {}}
-            title="Get Suggestion"
-            type="submit"
-            bgColor="var(--bg-darkGreen)"
-            textColor="var(--text-light)"
-          />
+                <input
+                    type="number"
+                    name="cultivableArea"
+                    value={formData.cultivableArea}
+                    onChange={handleChange}
+                    placeholder="Cultivable Area (in acres)"
+                    required
+                />
+                <input
+                    type="number"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleChange}
+                    placeholder="Budget (in LKR)"
+                    required
+                />
+                <input
+                    type="number"
+                    name="irrigationCapacity"
+                    value={formData.irrigationCapacity}
+                    onChange={handleChange}
+                    placeholder="Irrigation Capacity (L/day)"
+                    required
+                />
+
+                <div className="form-button">
+                    <Button
+                        onClick={() => {
+                        }}
+                        title="Get Suggestion"
+                        type="submit"
+                        bgColor="var(--bg-darkGreen)"
+                        textColor="var(--text-light)"
+                    />
+                </div>
+            </form>
+            {showAIButton && (
+                <div className="show-ai-button">
+                    <Button
+                        onClick={() => {
+                            setShowAIResponse(true);
+                        }}
+                        title="Show AI Response"
+                        type="button"
+                        bgColor="var(--bg-darkGreen)"
+                        textColor="var(--text-light)"
+                    />
+                </div>
+            )}
         </div>
-      </form>
-      {showAIButton && (
-        <div className="show-ai-button">
-          <Button
-            onClick={() => {
-              setShowAIResponse(true);
-            }}
-            title="Show AI Response"
-            type="button"
-            style={{
-              backgroundColor: "var(--bg-darkGreen)",
-              color: "var(--text-light)",
-            }}
-          />
-        </div>
-      )}
-    </div>
-  );
+    );
 }
 
 export default PublicSuggestionForm;
