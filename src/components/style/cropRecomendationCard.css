@@ -24,12 +24,13 @@
   gap: 1rem;
 }
 
-.card-left {
+.card-top {
   background-color: var(--bg-gray);
   padding: 0.5rem;
+  position: relative;
 }
 
-.card-left h3 {
+.card-top h3 {
   margin: 0;
   font-size: 1.5rem;
   color: var(--text-dark);
@@ -41,22 +42,22 @@
   font-size: 14px;
 }
 
-.card-right table {
+.card-bottom table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
 }
 
-.card-right td {
+.card-bottom td {
   padding: 8px 12px;
   border-bottom: 1px solid #eee;
 }
 
-.card-right tr:last-child td {
+.card-bottom tr:last-child td {
   border-bottom: none;
 }
 
-.card-right .label {
+.card-bottom .label {
   font-weight: 600;
   color: var(--black);
   width: 40%;
@@ -64,7 +65,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.card-right .value {
+.card-bottom .value {
   font-size: 1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-highlight);
@@ -196,4 +197,27 @@ section h4 {
   padding-bottom: 4px;
   margin-top: 24px;
 }
+
+.download-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-gray);
+}
+
+.card-top {
+  position: relative;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+
 

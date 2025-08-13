@@ -1,4 +1,4 @@
-@import '../../constants/colors.css';
+@import "../../constants/colors.css";
 
 .public-suggestion {
   display: flex;
@@ -7,9 +7,11 @@
   gap: 1.5rem;
   background-color: var(--bg-gray);
   box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .request {
+  margin-top: 2rem;
   width: 35%;
   min-width: 300px;
   overflow-y: auto;
@@ -19,14 +21,14 @@
 
 .response {
   flex-grow: 1;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-darkGreen);
   padding: 1.5rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;   
-  align-items: start;                         
+  gap: 1rem;
+  align-items: start;
 }
 
 .no-suggestion {
@@ -34,6 +36,50 @@
   color: var(--text-gray);
   align-items: center;
   justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+/* ai modal */
+
+.ai-response-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-response-modal {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  max-height: 75vh; /* Half of the viewport height */
+  padding: 20px;
+  border-radius: 10px;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Smooth scrolling inside */
+.ai-response-modal::-webkit-scrollbar {
+  width: 6px;
+}
+.ai-response-modal::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }

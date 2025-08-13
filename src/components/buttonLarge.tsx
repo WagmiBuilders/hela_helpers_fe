@@ -2,7 +2,7 @@ import './style/buttonLarge.css'
 
 type ButtonProps = {
   title: string;
-  onClick: () => any;
+  onClick: () => void;
 };
 
 function buttonLarge({title, onClick} : ButtonProps) {
