@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../constants/api';
 
-export const getCropSuggestion = async (formData: any) => {
+export const getCropSuggestion = async (formData: unknown) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/public/suggestion/`, formData);
     console.log("response",response);

@@ -4,7 +4,7 @@ import { API_BASE_URL } from '../constants/api';
 const BASE_URL = `${API_BASE_URL}/public/subscribed-users`;
 
 // Create user
-export const createSubscribedUser = async (formData: any) => {
+export const createSubscribedUser = async (formData: unknown) => {
   try {
     const response = await axios.post(`${BASE_URL}`, formData);
     console.log("Created subscribed user:", response);
@@ -38,7 +38,7 @@ export const getSubscribedUserById = async (id: number) => {
 };
 
 // Update user
-export const updateSubscribedUser = async (id: number, formData: any) => {
+export const updateSubscribedUser = async (id: number, formData: unknown) => {
   try {
     const response = await axios.put(`${BASE_URL}/${id}`, formData);
     console.log("Updated subscribed user:", response);

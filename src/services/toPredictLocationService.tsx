@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_BASE_URL } from "../constants/api";
 const BASE_URL = `${API_BASE_URL}/admin/locations`;
-export const createToPredictLocation = async (formData: any) => {
+export const createToPredictLocation = async (formData: unknown) => {
   try {
     const response = await axios.post(
       `${BASE_URL}/`,
@@ -38,7 +38,7 @@ export const getToPredictLocationById = async (id: number) => {
 };
 
 // Update
-export const updateToPredictLocation = async (id: number, formData: any) => {
+export const updateToPredictLocation = async (id: number, formData: unknown) => {
   try {
     const response = await axios.put(`${BASE_URL}/${id}`, formData);
     console.log("Updated location:", response);

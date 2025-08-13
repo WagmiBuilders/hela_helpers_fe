@@ -6,6 +6,19 @@ import {
 import { getAllToPredictLocations } from "../services/toPredictLocationService";
 import "./style/SubscribeUserPage.css";
 
+
+interface SubscribedUser {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  locationId: number;
+}
+
+interface Location {
+  id: number;
+  location: string;
+}
+
 function SubscribeUserPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,8 +29,8 @@ function SubscribeUserPage() {
 
   const [searchPhone, setSearchPhone] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
-  const [searchedUser, setSearchedUser] = useState<any>(null);
-  const [locations, setLocations] = useState<any[]>([]);
+  const [searchedUser, setSearchedUser] = useState<SubscribedUser | null>(null);
+  const [locations, setLocations] = useState<Location[]>([]);
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (
@@ -68,6 +81,7 @@ function SubscribeUserPage() {
       setShowModal(true);
       setFormData({ name: "", phoneNumber: "", email: "", locationId: "" });
     } catch (error) {
+      console.log("Error subscribing user:", error);
       setResponseMessage("❌ Failed to subscribe.");
       setSearchedUser(null);
       setShowModal(true);
@@ -81,6 +95,7 @@ function SubscribeUserPage() {
       setResponseMessage("");
       setShowModal(true);
     } catch (error) {
+      console.log("Error fetching user:", error);
       setSearchedUser(null);
       setResponseMessage("🔍 User not found.");
       setShowModal(true);

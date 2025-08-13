@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../constants/api';
 
-export const addCropVariety = async (data: any) => {
+export const addCropVariety = async (data: unknown) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/admin/varieties`, data);
     return response.data;
@@ -21,7 +21,7 @@ export const getAllCropVarieties = async () => {
   }
 };
 
-export const updateCropVarieties = async (id: number, data: any) => {
+export const updateCropVarieties = async (id: number, data: unknown) => {
   try {
     const response = await axios.put(`${API_BASE_URL}/admin/varieties/${id}`, data);
     return response.data;

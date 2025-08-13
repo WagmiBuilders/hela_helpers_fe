@@ -2,13 +2,13 @@ import './style/button.css';
 
 type ButtonProps = {
   title: string;
-  onClick: () => any;
+  onClick: () => void;
   bgColor: string;
   textColor: string;
   type?: "button" | "submit" | "reset";
 };
 
-function button({ title, onClick, bgColor, textColor, type = "button" }: ButtonProps) {
+function Button({ title, onClick, bgColor, textColor, type = "button" }: ButtonProps) {
   return (
     <button
       type={type}
@@ -24,4 +24,4 @@ function button({ title, onClick, bgColor, textColor, type = "button" }: ButtonP
   );
 }
 
-export default button;
+export default Button;

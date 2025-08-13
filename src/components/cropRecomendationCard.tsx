@@ -2,14 +2,114 @@ import React, { useState } from "react";
 import "./style/cropRecomendationCard.css";
 import { FaDownload } from "react-icons/fa";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas"; 
+import html2canvas from "html2canvas";
 
 
-interface Props {
-  data: any;
+interface District {
+    name: string;
 }
 
-const cropRecommendationCard: React.FC<Props> = ({ data }) => {
+interface ZoneFit {
+    zoneCode: string;
+    avgRainfallMm: number;
+    avgTempC: number;
+    soilSeries: string;
+    districts: District[];
+}
+
+interface NPKSchedule {
+    name: string;
+    nitrogen: number;
+    phosphorus: number;
+    potassium: number;
+}
+
+interface Crop {
+    name: string;
+}
+
+interface CropVariety {
+    crop: Crop;
+    variety: string;
+    yieldKgPerHa: number;
+    soilCompatibility: string;
+    maturityDays: number;
+    waterNeedsMm: number;
+    seedRateKgPerHa: number;
+    pestDiseaseIndex: string;
+    rotationOptions: string;
+    npkSchedule: NPKSchedule;
+    zoneFit: ZoneFit[];
+}
+
+interface PriceAverage {
+    district: string;
+    start: string;
+    end: string;
+    farmGatePriceLkrPerKg: number;
+    wholesalePriceLkrPerKg: number;
+    retailPriceLkrPerKg: number;
+}
+
+interface Props {
+    data: {
+        cropVariety: CropVariety;
+        estimatedSeedPrice: number;
+        estimatedFertilizerPrice: number;
+        previousYearPriceAverages: PriceAverage[];
+    };
+}
+
+
+interface Crop {
+    name: string;
+}
+
+interface CropVariety {
+    crop: Crop;
+    variety: string;
+    yieldKgPerHa: number;
+    soilCompatibility: string;
+    maturityDays: number;
+    waterNeedsMm: number;
+    seedRateKgPerHa: number;
+    pestDiseaseIndex: string;
+    rotationOptions: string;
+    npkSchedule: {
+        name: string;
+        nitrogen: number;
+        phosphorus: number;
+        potassium: number;
+    };
+    zoneFit: {
+        zoneCode: string;
+        avgRainfallMm: number;
+        avgTempC: number;
+        soilSeries: string;
+        districts: { name: string }[];
+    }[];
+}
+
+interface PriceAverage {
+    district: string;
+    start: string;
+    end: string;
+    farmGatePriceLkrPerKg: number;
+    wholesalePriceLkrPerKg: number;
+    retailPriceLkrPerKg: number;
+}
+
+interface Props {
+    data: {
+        cropVariety: CropVariety;
+        estimatedSeedPrice: number;
+        estimatedFertilizerPrice: number;
+        previousYearPriceAverages: PriceAverage[];
+    };
+}
+
+
+const CropRecommendationCard: React.FC<Props> = ({ data }) => {
   const [showModal, setShowModal] = useState(false);
   const { cropVariety, estimatedSeedPrice, estimatedFertilizerPrice, previousYearPriceAverages } = data;
 
@@ -107,14 +207,14 @@ const cropRecommendationCard: React.FC<Props> = ({ data }) => {
 
             <section>
                 <h4>Zone Fit</h4>
-                {cropVariety.zoneFit.map((zone: any, i: number) => (
+                {cropVariety.zoneFit.map((zone: ZoneFit, i: number) => (
                 <table className="detailed-table" key={i}>
                     <tbody>
                     <tr><td>Zone Code</td><td>{zone.zoneCode}</td></tr>
                     <tr><td>Avg Rainfall (mm)</td><td>{zone.avgRainfallMm}</td></tr>
                     <tr><td>Avg Temperature (°C)</td><td>{zone.avgTempC}</td></tr>
                     <tr><td>Soil Series</td><td>{zone.soilSeries}</td></tr>
-                    <tr><td>Districts</td><td>{zone.districts.map((d: any) => d.name).join(", ")}</td></tr>
+                    <tr><td>Districts</td><td>{zone.districts.map((d: District) => d.name).join(", ")}</td></tr>
                     </tbody>
                 </table>
                 ))}
@@ -133,7 +233,7 @@ const cropRecommendationCard: React.FC<Props> = ({ data }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {previousYearPriceAverages.map((price: any, i: number) => (
+                  {previousYearPriceAverages.map((price: PriceAverage, i: number) => (
                     <tr key={i}>
                       <td>{price.district}</td>
                       <td>{price.start} to {price.end}</td>
@@ -154,4 +254,4 @@ const cropRecommendationCard: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default cropRecommendationCard;
+export default CropRecommendationCard;

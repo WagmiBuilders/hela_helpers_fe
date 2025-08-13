@@ -12,7 +12,7 @@ interface CropCardProps {
   onDelete: (id: number) => void;
 }
 
-function cropCard({ crop, onEdit, onDelete }: CropCardProps) {
+function CropCard({ crop, onEdit, onDelete }: CropCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(crop.name);
 
@@ -73,4 +73,4 @@ function cropCard({ crop, onEdit, onDelete }: CropCardProps) {
   );
 }
 
-export default cropCard;
+export default CropCard;

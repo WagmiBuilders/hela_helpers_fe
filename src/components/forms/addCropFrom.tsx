@@ -5,7 +5,7 @@ import '../../constants/colors.css';
 import { addCrop } from '../../services/cropService';
 import '../../constants/commonStyle.css'
 
-function addCropForm() {
+function AddCropForm() {
   const [crop, setCrop] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +20,7 @@ function addCropForm() {
       alert('Crop added successfully!');
       setCrop('');
     } catch (error) {
+      console.log(error);
       alert('Failed to add crop');
     }
   };
@@ -46,4 +47,4 @@ function addCropForm() {
   );
 }
 
-export default addCropForm;
+export default AddCropForm;

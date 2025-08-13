@@ -112,6 +112,7 @@ function AddMarketPriceForm({ existingData }: Props) {
         alert('Market Price added successfully');
       }
     } catch (err) {
+      console.log('Error saving market price:', err);
       alert("Failed to save market price");
     }
   };

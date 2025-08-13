@@ -50,7 +50,7 @@ interface FormData {
   npkScheduleId: number | '';
 }
 
-function addVarietyForm({ existingData }: Props) {
+function AddVarietyForm({ existingData }: Props) {
   const [crops, setCrops] = useState<Crop[]>([]);
   const [zones, setZones] = useState<Zone[]>([]);
   const [npkSchedules, setNpkSchedules] = useState<NpkSchedule[]>([]);
@@ -175,6 +175,7 @@ function addVarietyForm({ existingData }: Props) {
       alert('Crop variety added successfully!');
     }
   } catch (error) {
+    console.log(error);
     alert('Failed to save crop variety');
   }
 };
@@ -293,4 +294,4 @@ function addVarietyForm({ existingData }: Props) {
   );
 }
 
-export default addVarietyForm;
+export default AddVarietyForm;

@@ -47,6 +47,46 @@ import CropVarietyTable from '../components/cropVarietyTable';
 import MarketPriceTable from '../components/marketPriceTable';
 import DashboardStats from '../components/DashboardStats';
 
+interface Crop {
+  id: number;
+  name: string;
+}
+
+interface NpkSchedule {
+  id: number;
+  name: string;
+  nitrogen: number;
+  phosphorus: number;
+  potassium: number;
+}
+
+interface District {
+  id: number;
+  name: string;
+}
+
+
+interface Zone {
+  id: number;
+  zoneCode: string;
+  avgRainfallMm: number;
+  avgTempC: number;
+  soilSeries: string;
+  // If your API sometimes omits districts, make this optional OR default to []
+  districts: District[];
+}
+
+interface MarketPrice {
+  id: number;
+  cropVarietyId: number;
+  cropVarietyName: string;
+  date: string;
+  district: string;
+  farmGatePriceLkrPerKg: number;
+  wholesalePriceLkrPerKg: number;
+  retailPriceLkrPerKg: number;
+}
+
 interface CropVariety {
   id: number;
   variety: string;
@@ -81,15 +121,27 @@ interface CropVariety {
   };
 }
 
+// interface CropVariety {
+//   id: number;
+//   variety: string;
+//   soilCompatibility: string;
+//   maturityDays: number;
+//   waterNeedsMm: number;
+//   yieldKgPerHa: number;
+//   pestDiseaseIndex: number;
+//   rotationOptions: string;
+//   seedRateKgPerHa: number;
+// }
+
 const Profile=()=> {
   const [viewVarietyData, setViewVarietyData] = useState<CropVariety | null>(null);
   const [selectedOption, setSelectedOption] = useState('Dashboard');
   const [showAddPopup, setShowAddPopup] = useState(false);
-  const [cropList, setCropList] = useState([]);
-  const [npkList, setNpkList] = useState([]);
-  const [zoneList, setZoneList] = useState([]);
-  const [cropVarietyList, setCropVarietyList] = useState([]);
-  const [marketPriceList, setMarketPriceList] = useState([]);
+  const [cropList, setCropList] = useState<Crop[]>([]);
+  const [npkList, setNpkList] = useState<NpkSchedule[]>([]);
+  const [zoneList, setZoneList] = useState<Zone[]>([]);
+  const [cropVarietyList, setCropVarietyList] = useState<CropVariety[]>([]);
+  const [marketPriceList, setMarketPriceList] = useState<MarketPrice[]>([]);
   const [dashboardStats, setDashboardStats] = useState({
     subscribedUsers: 0,
     crops: 0,
@@ -180,7 +232,7 @@ const Profile=()=> {
     }
   };
 
-  const handleOnEditNpk = async (id: number, newData: any) => {
+  const handleOnEditNpk = async (id: number, newData: unknown) => {
     try {
       await updateNpkSchedule(id, newData);
       fetchNpkScheduleList();
@@ -211,7 +263,7 @@ const Profile=()=> {
     }
   };
 
-  const handleOnEditZone = async (id: number, newData: any) => {
+  const handleOnEditZone = async (id: number, newData: unknown) => {
     try {
       await updateZone(id, newData);
       fetchZoneList();
@@ -264,7 +316,7 @@ const Profile=()=> {
     }
   };
 
-  const handleOnViewCropVariety = (data: any) => {
+  const handleOnViewCropVariety = (data: CropVariety) => {
     setViewVarietyData(data);
   };
 
@@ -349,7 +401,7 @@ const Profile=()=> {
             </div>
 
             <div className='admin-body-content-grid-layout'>
-              {cropList.map((crop: any) => (
+              {cropList.map((crop) => (
                 <CropCard key={crop.id} crop={crop} onEdit={handleOnEditCrop} onDelete={handleOnDeleteCrop} />
               ))}
             </div>

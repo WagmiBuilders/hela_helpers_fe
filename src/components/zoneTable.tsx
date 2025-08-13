@@ -23,7 +23,7 @@ interface Props {
   onDelete: (id: number) => void;
 }
 
-function zoneTable({ zoneList, onEdit, onDelete }: Props) {
+function ZoneTable({ zoneList, onEdit, onDelete }: Props) {
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [filteredZones, setFilteredZones] = useState<Zone[]>(zoneList);
   const [allDistricts, setAllDistricts] = useState<string[]>([]);
@@ -185,4 +185,4 @@ function zoneTable({ zoneList, onEdit, onDelete }: Props) {
   );
 }
 
-export default zoneTable;
+export default ZoneTable;
