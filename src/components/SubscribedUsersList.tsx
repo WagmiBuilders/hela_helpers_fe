@@ -51,12 +51,12 @@ const SubscribedUsersList = () => {
       });
     } catch (error) {
       console.error("Error triggering predictions:", error);
+      const anyErr = error as { response?: { data?: { message?: string } } };
       setNotification({
         show: true,
         type: "error",
         message:
-          error?.response?.data?.message ||
-          "Failed to trigger weather predictions",
+            anyErr.response?.data?.message ?? (error instanceof Error ? error.message : 'Failed to trigger weather predictions')
       });
     }
     setLoading(false);
