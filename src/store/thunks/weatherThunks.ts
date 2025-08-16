@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import { API_BASE_URL } from '../../constants/api';
 export interface StandardResponse<T = unknown> {
     code: number;
     status: 'Success' | 'Error';
@@ -7,7 +7,6 @@ export interface StandardResponse<T = unknown> {
 }
 
 export type UploadWeatherDataResponse = StandardResponse<string>;
-
 export const uploadWeatherData = createAsyncThunk<
     UploadWeatherDataResponse, // response type (update as needed)
     {
@@ -46,7 +45,7 @@ export const uploadWeatherData = createAsyncThunk<
     'weather/uploadWeatherData',
     async (payload, { rejectWithValue }) => {
         try {
-            const response = await fetch('http://localhost:8084/admin/weather/upload', {
+            const response = await fetch(`${API_BASE_URL}/admin/weather/upload`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -105,7 +104,7 @@ export const trainModel = createAsyncThunk<
     'weather/trainModel',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await fetch('http://localhost:8084/admin/weather/train', {
+            const response = await fetch(`${API_BASE_URL}http://localhost:8084/admin/weather/train`, {
                 method: 'POST',
             });
 
@@ -162,7 +161,7 @@ export const predict = createAsyncThunk<
     'weather/predict',
     async (location, { rejectWithValue }) => {
         try {
-            const response = await fetch(`http://localhost:8084/admin/weather/predict?location=${encodeURIComponent(location)}`);
+            const response = await fetch(`${API_BASE_URL}/admin/weather/predict?location=${encodeURIComponent(location)}`);
 
             if (!response.ok) {
                 const errorBody = await response.json().catch(() => null);
