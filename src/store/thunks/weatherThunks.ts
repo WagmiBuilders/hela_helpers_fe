@@ -161,7 +161,13 @@ export const predict = createAsyncThunk<
     'weather/predict',
     async (location, { rejectWithValue }) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/weather/predict?location=${encodeURIComponent(location)}`);
+            const response = await fetch(`${API_BASE_URL}/admin/weather/predict`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ location }),
+            });
 
             if (!response.ok) {
                 const errorBody = await response.json().catch(() => null);
