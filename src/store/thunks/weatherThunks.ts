@@ -104,7 +104,7 @@ export const trainModel = createAsyncThunk<
     'weather/trainModel',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await fetch(`${API_BASE_URL}http://localhost:8084/admin/weather/train`, {
+            const response = await fetch(`${API_BASE_URL}/admin/weather/train`, {
                 method: 'POST',
             });
 
