@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import { API_BASE_URL } from '../../constants/api';
 export interface StandardResponse<T = unknown> {
     code: number;
     status: 'Success' | 'Error';
@@ -46,7 +46,7 @@ export const uploadWeatherData = createAsyncThunk<
     'weather/uploadWeatherData',
     async (payload, { rejectWithValue }) => {
         try {
-            const response = await fetch('http://localhost:8084/admin/weather/upload', {
+            const response = await fetch(`${API_BASE_URL}/admin/weather/upload`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -109,7 +109,7 @@ export const trainModel = createAsyncThunk<
     'weather/trainModel',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await fetch('http://localhost:8084/admin/weather/train', {
+            const response = await fetch(`${API_BASE_URL}/admin/weather/train`, {
                 method: 'POST',
             });
 
@@ -169,13 +169,15 @@ export const predict = createAsyncThunk<
     'weather/predict',
     async (location, { rejectWithValue }) => {
         try {
-            const response = await fetch(`http://localhost:8084/admin/weather/predict?location=${encodeURIComponent(location)}`);
+            const response = await fetch(`${API_BASE_URL}/admin/weather/predict?location=${encodeURIComponent(location)}`);
 
             console.log(`🔍 Fetching prediction for location: ${location}`);
             console.log(`🔍 Fetching prediction for location: ${location}`, response);
             console.log(`🔍 Status: ${response.status} - ${response.statusText}`);
+            console.log(`🔍 Response Body:`, response.body);
 
             if (!response.ok) {
+                console.log("False");
                 const errorBody = await response.json().catch(() => null);
 
                 console.error('❌ Prediction failed:', {
@@ -193,7 +195,7 @@ export const predict = createAsyncThunk<
 
             const resJson = await response.json();
             console.log('✅ Prediction success:', resJson);
-            return resJson.data;
+            return resJson;
 
         } catch (err: unknown) {
             const message = err instanceof Error ? err.message : String(err);
