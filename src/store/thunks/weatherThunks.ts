@@ -52,6 +52,10 @@ export const uploadWeatherData = createAsyncThunk<
                 body: JSON.stringify(payload),
             });
 
+            console.log('📤 Uploading weather data to server...', payload);
+            console.log('📤 Uploading weather data:', response);
+            console.log(`📤 Status: ${response.status} - ${response.statusText}`);
+
             if (!response.ok) {
                 const errorBody = await response.json().catch(() => null);
 
@@ -109,6 +113,9 @@ export const trainModel = createAsyncThunk<
                 method: 'POST',
             });
 
+            console.log('🔄 Training model...', response);
+            console.log(`🔄 Status: ${response.status} - ${response.statusText}`);
+
             if (!response.ok) {
                 const errorBody = await response.json().catch(() => null);
 
@@ -163,6 +170,10 @@ export const predict = createAsyncThunk<
     async (location, { rejectWithValue }) => {
         try {
             const response = await fetch(`http://localhost:8084/admin/weather/predict?location=${encodeURIComponent(location)}`);
+
+            console.log(`🔍 Fetching prediction for location: ${location}`);
+            console.log(`🔍 Fetching prediction for location: ${location}`, response);
+            console.log(`🔍 Status: ${response.status} - ${response.statusText}`);
 
             if (!response.ok) {
                 const errorBody = await response.json().catch(() => null);
