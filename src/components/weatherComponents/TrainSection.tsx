@@ -35,7 +35,6 @@ export default function TrainSection() {
 
     return (
         <div className="rounded-xl bg-white shadow-lg p-6 border border-gray-200">
-        <div className="rounded-xl bg-white shadow p-6 flex flex-col gap-4">
             <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold">Train model</h2>
                 <button
@@ -64,7 +63,6 @@ export default function TrainSection() {
             )}
 
             {error && <p className="text-red-600 text-sm">{error}</p>}
-        </div>
         </div>
     );
 }

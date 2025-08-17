@@ -51,6 +51,10 @@ export const uploadWeatherData = createAsyncThunk<
                 body: JSON.stringify(payload),
             });
 
+            console.log('📤 Uploading weather data to server...', payload);
+            console.log('📤 Uploading weather data:', response);
+            console.log(`📤 Status: ${response.status} - ${response.statusText}`);
+
             if (!response.ok) {
                 const errorBody = await response.json().catch(() => null);
 
@@ -108,6 +112,9 @@ export const trainModel = createAsyncThunk<
                 method: 'POST',
             });
 
+            console.log('🔄 Training model...', response);
+            console.log(`🔄 Status: ${response.status} - ${response.statusText}`);
+
             if (!response.ok) {
                 const errorBody = await response.json().catch(() => null);
 
@@ -164,6 +171,7 @@ export const predict = createAsyncThunk<
             const response = await fetch(`${API_BASE_URL}/admin/weather/predict?location=${encodeURIComponent(location)}`);
 
             if (!response.ok) {
+                console.log("False");
                 const errorBody = await response.json().catch(() => null);
 
                 console.error('❌ Prediction failed:', {
@@ -181,7 +189,7 @@ export const predict = createAsyncThunk<
 
             const resJson = await response.json();
             console.log('✅ Prediction success:', resJson);
-            return resJson.data;
+            return resJson;
 
         } catch (err: unknown) {
             const message = err instanceof Error ? err.message : String(err);
