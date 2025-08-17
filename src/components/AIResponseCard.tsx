@@ -1,5 +1,4 @@
 // components/AIResponseCard.tsx
-import React from 'react';
 import './style/AIResponseCard.css'; // Optional styling
 
 interface Props {

@@ -7,7 +7,6 @@ export interface StandardResponse<T = unknown> {
 }
 
 export type UploadWeatherDataResponse = StandardResponse<string>;
-
 export const uploadWeatherData = createAsyncThunk<
     UploadWeatherDataResponse, // response type (update as needed)
     {
@@ -170,11 +169,6 @@ export const predict = createAsyncThunk<
     async (location, { rejectWithValue }) => {
         try {
             const response = await fetch(`${API_BASE_URL}/admin/weather/predict?location=${encodeURIComponent(location)}`);
-
-            console.log(`🔍 Fetching prediction for location: ${location}`);
-            console.log(`🔍 Fetching prediction for location: ${location}`, response);
-            console.log(`🔍 Status: ${response.status} - ${response.statusText}`);
-            console.log(`🔍 Response Body:`, response.body);
 
             if (!response.ok) {
                 console.log("False");
