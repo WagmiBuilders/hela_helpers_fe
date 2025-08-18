@@ -11,7 +11,7 @@ interface SubscribedUser {
   name: string;
   email: string;
   phoneNumber: string;
-  locationId: number;
+  toPredictLocation: string;
 }
 
 interface Location {
@@ -177,7 +177,7 @@ function SubscribeUserPage() {
                   <strong>Phone:</strong> {searchedUser.phoneNumber}
                 </p>
                 <p>
-                  <strong>Location ID:</strong> {searchedUser.locationId}
+                  <strong>Location :</strong> {searchedUser.toPredictLocation}
                 </p>
               </div>
             )}
